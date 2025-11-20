@@ -2453,6 +2453,37 @@ PODS:
     - SocketRocket
     - Yoga
   - SocketRocket (0.7.1)
+  - ThemeManager (0.0.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - NitroModules
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-callinvoker
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
   - Unistyles (3.0.13):
     - boost
     - DoubleConversion
@@ -2564,6 +2595,7 @@ DEPENDENCIES:
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNWorklets (from `../node_modules/react-native-worklets`)
   - SocketRocket (~> 0.7.1)
+  - ThemeManager (from `../node_modules/theme-manager`)
   - Unistyles (from `../node_modules/react-native-unistyles`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -2725,6 +2757,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNWorklets:
     :path: "../node_modules/react-native-worklets"
+  ThemeManager:
+    :path: "../node_modules/theme-manager"
   Unistyles:
     :path: "../node_modules/react-native-unistyles"
   Yoga:
@@ -2808,6 +2842,7 @@ SPEC CHECKSUMS:
   RNReanimated: 22026967e9f3eda630767a11ddb7a1dc45e079f1
   RNWorklets: 4fdb5474f2117fa53d2000c5c6a7f68e4f4f6e95
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
+  ThemeManager: c33e1853383e9f7204e7719d9c9c6be649ca0e01
   Unistyles: f567a4218729551da038231d6442d2931d297344
   Yoga: 1c52fbd270869e556504def7e94fffbf67f53f7b
 

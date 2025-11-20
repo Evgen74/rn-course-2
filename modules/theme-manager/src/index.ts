@@ -1,0 +1,1 @@
+export { themeManager } from './module';

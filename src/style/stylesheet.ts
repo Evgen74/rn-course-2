@@ -1,11 +1,18 @@
 import { StyleSheet } from 'react-native-unistyles';
 import { darkTheme } from './themes/dark';
 import { lightTheme } from './themes/light';
+import { lightGreenTheme, darkGreenTheme } from './themes/green';
+import { lightSkyBlueTheme, darkSkyBlueTheme } from './themes/skyBlue';
 import { breakpoints } from './themes/breakpoints';
+import { initialTheme } from '../../modules/theme-manager/src/native';
 
 const appThemes = {
-  light: lightTheme,
-  dark: darkTheme,
+  lightDefault: lightTheme,
+  darkDefault: darkTheme,
+  lightGreen: lightGreenTheme,
+  darkGreen: darkGreenTheme,
+  lightSkyBlue: lightSkyBlueTheme,
+  darkSkyBlue: darkSkyBlueTheme,
 };
 
 export type AppTheme = keyof typeof appThemes;
@@ -24,6 +31,7 @@ StyleSheet.configure({
   themes: appThemes,
   breakpoints,
   settings: {
-    adaptiveThemes: true,
+    adaptiveThemes: false,
+    initialTheme: initialTheme as keyof AppThemes,
   },
 });

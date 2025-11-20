@@ -1,0 +1,25 @@
+{
+  "name": "react-native-theme-manager",
+  "version": "0.0.0",
+  "description": "theme manager",
+  "main": "src/index",
+  "codegenConfig": {
+    "name": "ThemeManagerSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
+  },
+  "author": " <> ()",
+  "license": "UNLICENSED",
+  "homepage": "#readme",
+  "devDependencies": {
+    "@react-native/babel-preset": "0.81.1",
+    "@types/react": "^19.1.0",
+    "react": "19.1.0",
+    "react-native": "0.81.1"
+  },
+  "create-react-native-library": {
+    "languages": "kotlin-swift",
+    "type": "nitro-module",
+    "version": "0.54.3"
+  }
+}

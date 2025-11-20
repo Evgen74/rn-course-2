@@ -1,0 +1,17 @@
+{
+  "cxxNamespace": ["thememanager"],
+  "ios": {
+    "iosModuleName": "ThemeManager"
+  },
+  "android": {
+    "androidNamespace": ["thememanager"],
+    "androidCxxLibName": "thememanager"
+  },
+  "autolinking": {
+    "ThemeManager": {
+      "swift": "ThemeManager",
+      "kotlin": "ThemeManager"
+    }
+  },
+  "ignorePaths": ["node_modules"]
+}
