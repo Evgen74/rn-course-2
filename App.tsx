@@ -2,12 +2,15 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Navigation } from './src/nav';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 function App() {
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <Navigation />
-    </GestureHandlerRootView>
+    <KeyboardProvider>
+      <GestureHandlerRootView style={styles.container}>
+        <Navigation />
+      </GestureHandlerRootView>
+    </KeyboardProvider>
   );
 }
 

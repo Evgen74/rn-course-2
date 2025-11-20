@@ -1,11 +1,12 @@
-import { useCallback, useMemo, useState, useEffect } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { WithNav } from '../nav'
 import { StyleSheet, UnistylesRuntime } from 'react-native-unistyles';
 import Animated, { FadeInRight, FadeOutRight } from 'react-native-reanimated';
 import { Header, LineItem, screenAnimationDuration } from '../ui';
-import { View } from 'react-native';
+import { TextInput, View } from 'react-native';
 import { themeManager } from '../../modules/theme-manager/src/';
 import { Button } from '../ui/Button';
+import { KeyboardStickyView } from 'react-native-keyboard-controller';
 
 type PaletteType = 'Default' | 'Green' | 'SkyBlue'
 type ThemeMode = 'light' | 'dark' | 'auto'
@@ -105,40 +106,62 @@ export const Settings = ({ navigate }: WithNav<{}>) => {
         <Button text='Test3' onPress={() => { }} style='error' isDisabled/>
         <Button text='Test4' onPress={() => { }} style='success' isDisabled/>
       </View>
+      <TextInput placeholder='Enter your text' style={styles.textInput}/>
+      <KeyboardStickyView
+      style={styles.abs}
+      >
+        <Button text='Test' onPress={() => { }} style='primary'/>
+      </KeyboardStickyView>
     </Animated.ScrollView>
   );
 }
 
 const styles = StyleSheet.create((theme, rt) => {
   return ({
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.white,
-    paddingTop: rt.insets.top,
-    paddingBottom: rt.insets.bottom,
-    paddingLeft: rt.insets.left,
-    paddingRight: rt.insets.right,
-  },
-  contentContainer: {
-    paddingHorizontal: theme.spacings.x6
-  },
-  sectionTheme: {
-    marginTop: theme.spacings.x8,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  section: {
-    marginTop: theme.spacings.x8,
-  },
-  title: {
-    ...theme.typo.headlineLarge,
-    color: theme.colors.secondary10,
-  },
-  buttonContainer: {
-    marginTop: theme.spacings.x8,
-    gap: theme.spacings.x4,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-})})
+    abs: {
+      position: 'absolute',
+      bottom: 0,
+      left: theme.spacings.x6,
+    },
+    container: {
+      flex: 1,
+      backgroundColor: theme.colors.white,
+      paddingTop: rt.insets.top,
+      paddingBottom: rt.insets.bottom,
+      paddingLeft: rt.insets.left,
+      paddingRight: rt.insets.right,
+    },
+    contentContainer: {
+      paddingHorizontal: theme.spacings.x6,
+      flex: 1,
+    },
+    sectionTheme: {
+      marginTop: theme.spacings.x8,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+    section: {
+      marginTop: theme.spacings.x8,
+    },
+    title: {
+      ...theme.typo.headlineLarge,
+      color: theme.colors.secondary10,
+    },
+    buttonContainer: {
+      marginTop: theme.spacings.x8,
+      gap: theme.spacings.x4,
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    textInput: {
+      height: 40,
+      width: rt.screen.width - theme.spacings.x8,
+      borderColor: theme.colors.secondary10,
+      borderWidth: 1,
+      borderRadius: theme.roundings.r10,
+      paddingHorizontal: theme.spacings.x8,
+      marginVertical: theme.spacings.x4,
+    },
+  })
+})

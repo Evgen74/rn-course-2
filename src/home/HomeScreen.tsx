@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 import { Card, screenAnimationDuration } from '../ui';
 import { Button } from '../ui/Button';
@@ -11,6 +11,9 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useAnimatedVariantColor } from 'react-native-unistyles/reanimated';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
+
+const Scroll = Animated.createAnimatedComponent(KeyboardAwareScrollView)
 
 export const HomeScreen = ({ navigate }: WithNav<{}>) => {
   const handlePress = useCallback(() => {
@@ -35,11 +38,13 @@ export const HomeScreen = ({ navigate }: WithNav<{}>) => {
       exiting={FadeOutLeft.duration(screenAnimationDuration)}
       entering={FadeInLeft.duration(screenAnimationDuration)}
     >
-      <Animated.ScrollView
+      <Scroll
         style={[styles.container, animatedStyle]}
         contentContainerStyle={styles.contentContainer}
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="interactive"
+        bottomOffset={60}
+        extraKeyboardSpace={60}
       >
         <Text style={styles.title}>Тема 1</Text>
         <Text style={styles.subtitle}>Знакомство с Unistyles</Text>
@@ -65,7 +70,15 @@ export const HomeScreen = ({ navigate }: WithNav<{}>) => {
             image={{ uri: 'https://picsum.photos/300/200' }}
           />
         </View>
-      </Animated.ScrollView>
+        <TextInput
+          placeholder="Enter your text"
+          style={styles.input}
+        />
+        <TextInput
+          placeholder="Enter your text"
+          style={styles.input}
+        />
+      </Scroll>
     </Animated.View>
   );
 };
