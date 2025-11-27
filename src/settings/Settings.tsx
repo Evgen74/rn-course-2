@@ -1,34 +1,29 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
+import { observer } from 'mobx-react-lite';
 import { WithNav } from '../nav'
 import { StyleSheet, UnistylesRuntime } from 'react-native-unistyles';
 import Animated, { FadeInRight, FadeOutRight } from 'react-native-reanimated';
 import { Header, LineItem, screenAnimationDuration } from '../ui';
-import { TextInput, View } from 'react-native';
+import { View } from 'react-native';
 import { themeManager } from '../../modules/theme-manager/src/';
 import { Button } from '../ui/Button';
-import { KeyboardStickyView } from 'react-native-keyboard-controller';
-
-type PaletteType = 'Default' | 'Green' | 'SkyBlue'
-type ThemeMode = 'light' | 'dark' | 'auto'
+import { createPost, fetchPosts } from './api';
+import { themeStore, type PaletteType, type ThemeMode } from './themeStore';
+import mobxDebugger from 'mobx-debuger'
 
 const palletes = ['Default', 'Green', 'SkyBlue'] as const
 
-export const Settings = ({ navigate }: WithNav<{}>) => {
+export const Settings = observer(({ navigate }: WithNav<{}>) => {
   const handleBackPress = useCallback(() => {
     navigate('home');
   }, [navigate])
 
-  const [selectedThemeMode, setSelectedThemeMode] = useState<ThemeMode>(themeManager.fullTheme)
-  const [selectedPalette, setSelectedPalette] = useState<PaletteType>(themeManager.palette)
-
   const handleThemeModePress = useCallback((themeMode: ThemeMode) => {
-    themeManager.setTheme(themeMode)
-    setSelectedThemeMode(themeMode)
+    themeStore.setThemeMode(themeMode)
   }, [])
 
   const handlePalettePress = useCallback((palette: PaletteType) => {
-    themeManager.setPalette(palette)
-    setSelectedPalette(palette)
+    themeStore.setPalette(palette)
   }, [])
 
   const [defaultColors, greenColors, blueColors] = useMemo(() => {
@@ -38,6 +33,20 @@ export const Settings = ({ navigate }: WithNav<{}>) => {
       UnistylesRuntime.getTheme(`${themeManager.theme}${palette}`).colors.primary50,
       UnistylesRuntime.getTheme(`${themeManager.theme}${palette}`).colors.primary90
     ])
+  }, [])
+
+  useEffect(() => {
+    fetchPosts()
+
+    const unregister = mobxDebugger.connectStore('themeStore', themeStore)
+
+    return () => {
+      unregister()
+    }
+  }, [])
+
+  const handlePostRequest = useCallback(() => {
+    createPost({ title: 'foo', body: 'bar', userId: 1 })
   }, [])
 
   return (
@@ -56,19 +65,19 @@ export const Settings = ({ navigate }: WithNav<{}>) => {
           text='Светлая'
           type='light'
           onPress={handleThemeModePress}
-          isSelected={selectedThemeMode === 'light'}
+          isSelected={themeStore.themeMode === 'light'}
         />
         <LineItem
           text='Темная'
           type='dark'
           onPress={handleThemeModePress}
-          isSelected={selectedThemeMode === 'dark'}
+          isSelected={themeStore.themeMode === 'dark'}
         />
         <LineItem
           text='Авто'
           type='auto'
           onPress={handleThemeModePress}
-          isSelected={selectedThemeMode === 'auto'}
+          isSelected={themeStore.themeMode === 'auto'}
         />
       </View>
       <View style={styles.section}>
@@ -77,21 +86,21 @@ export const Settings = ({ navigate }: WithNav<{}>) => {
           type='Default'
           colors={defaultColors}
           onPress={handlePalettePress}
-          isSelected={selectedPalette === 'Default'}
+          isSelected={themeStore.palette === 'Default'}
         />
         <LineItem
           text='Йода'
           type='Green'
           colors={greenColors}
           onPress={handlePalettePress}
-          isSelected={selectedPalette === 'Green'}
+          isSelected={themeStore.palette === 'Green'}
         />
         <LineItem
           text='Океан'
           type='SkyBlue'
           colors={blueColors}
           onPress={handlePalettePress}
-          isSelected={selectedPalette === 'SkyBlue'}
+          isSelected={themeStore.palette === 'SkyBlue'}
         />
       </View>
       <View style={styles.buttonContainer}>
@@ -106,15 +115,12 @@ export const Settings = ({ navigate }: WithNav<{}>) => {
         <Button text='Test3' onPress={() => { }} style='error' isDisabled/>
         <Button text='Test4' onPress={() => { }} style='success' isDisabled/>
       </View>
-      <TextInput placeholder='Enter your text' style={styles.textInput}/>
-      <KeyboardStickyView
-      style={styles.abs}
-      >
-        <Button text='Test' onPress={() => { }} style='primary'/>
-      </KeyboardStickyView>
+      <View style={styles.buttonContainer}>
+        <Button text='POST Request' onPress={handlePostRequest} style='primary'/>
+      </View>
     </Animated.ScrollView>
   );
-}
+});
 
 const styles = StyleSheet.create((theme, rt) => {
   return ({

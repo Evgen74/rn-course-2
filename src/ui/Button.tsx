@@ -2,6 +2,8 @@ import { StyleSheet } from 'react-native-unistyles';
 import { TouchableOpacity, Text, View } from 'react-native';
 import { modifyLight } from '../style/themes/utils';
 import { memo } from 'react';
+import { registerPreview } from 'rozenite-preview';
+import { previewStyle } from './const';
 
 export type Props = {
   mode?: 'contained' | 'outlined' | 'text';
@@ -179,3 +181,23 @@ const styles = StyleSheet.create(theme => {
     },
   };
 });
+
+registerPreview('Button-primary-enabled', () => (
+  <View style={previewStyle.view}>
+    <Button text='Test' onPress={() => { }} style='primary'/>
+  </View>
+))
+
+registerPreview('Button-primary-disabled', () => (
+  <View style={previewStyle.view}>
+    <Button text='Test' onPress={() => { }} style='primary' isDisabled/>
+  </View>
+))
+
+registerPreview('Buttons', () => (
+  <View style={previewStyle.view}>
+    <Button text='Test' onPress={() => { }} style='primary'/>
+    <Button text='Test' onPress={() => { }} style='secondary'/>
+    <Button text='Test' onPress={() => { }} style='success'/>
+  </View>
+))

@@ -12,6 +12,7 @@ module.exports = function (api) {
           root: 'src',
         },
       ],
+      'rozenite-preview/babel-plugin',
       [
         '@babel/plugin-proposal-decorators',
         {

@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Стили для JSON Viewer */
+.json-placeholder {
+  color: #6b7280 !important;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* Улучшенные стили для кнопок управления */
+.state-tree button {
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.state-tree button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для react18-json-view */
+.react-json-view {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.react-json-view .string-value {
+  color: #059669;
+}
+
+.react-json-view .number-value {
+  color: #dc2626;
+}
+
+.react-json-view .boolean-value {
+  color: #7c3aed;
+}
+
+.react-json-view .null-value {
+  color: #6b7280;
+}
+
+.react-json-view .object-key {
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.react-json-view .object-key:hover {
+  background-color: #f3f4f6;
+}
+
+/* Улучшенная подсветка для редактируемых значений */
+.react-json-view .click-to-edit {
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 1px 3px;
+  transition: background-color 0.2s;
+}
+
+.react-json-view .click-to-edit:hover {
+  background-color: #fef3c7;
+}
+
+/* Стили для секции методов */
+.method-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.method-name {
+  font-weight: 600;
+}
+
+.badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.badge.action {
+  background: #E6F4EA;
+  color: #1E7E34;
+}
+
+.badge.flow {
+  background: #E7F1FF;
+  color: #1A5FFF;
+}
+
+.badge.method {
+  background: #F3F4F6;
+  color: #374151;
+}
+
+.arg-input {
+  flex: 1;
+  min-width: 240px;
+}
+
+.method-result {
+  margin-top: 8px;
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}

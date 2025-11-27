@@ -1,0 +1,41 @@
+{
+  "name": "mobx-debuger",
+  "version": "0.0.1",
+  "description": "debug mobx",
+  "type": "module",
+  "main": "./dist/react-native.cjs",
+  "module": "./dist/react-native.js",
+  "types": "./dist/react-native.d.ts",
+  "scripts": {
+    "build": "rozenite build",
+    "dev": "rozenite dev"
+  },
+  "dependencies": {
+    "@rozenite/plugin-bridge": "^1.0.0-alpha.15",
+    "react-dom": "19.1.0",
+    "react-native-web": "0.21.0",
+    "react18-json-view": "^0.2.9",
+    "tailwindcss": "^3.4.0"
+  },
+  "peerDependencies": {
+    "mobx": ">=6",
+    "react": "19.1.0",
+    "react-native": ">=0.80"
+  },
+  "peerDependenciesMeta": {
+    "react-native-web": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@rozenite/vite-plugin": "^1.0.0-alpha.15",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "rozenite": "^1.0.0-alpha.15",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.0"
+  },
+  "license": "MIT"
+}

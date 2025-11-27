@@ -2,13 +2,21 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Navigation } from './src/nav';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useNetworkActivityDevTools } from '@rozenite/network-activity-plugin';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
+import { PreviewHost } from 'rozenite-preview';
+import { useMobXDevTools } from './mobx-debuger';
 
 function App() {
+  useNetworkActivityDevTools();
+  useMobXDevTools();
+  
   return (
-    <KeyboardProvider>
+    <KeyboardProvider statusBarTranslucent navigationBarTranslucent>
       <GestureHandlerRootView style={styles.container}>
-        <Navigation />
+        <PreviewHost>
+          <Navigation />
+        </PreviewHost>
       </GestureHandlerRootView>
     </KeyboardProvider>
   );
